@@ -1,0 +1,61 @@
+model_list:
+  ###### CLOUD DEEPSEEK ######
+  - model_name: deepseek/deepseek-reasoner
+    litellm_params:
+      model: deepseek/deepseek-reasoner
+      api_base: https://api.deepseek.com/v1/
+      api_key: os.environ/DEEPSEEK_API_KEY
+  - model_name: deepseek/deepseek-chat
+    litellm_params:
+      model: deepseek/deepseek-chat
+      api_base: https://api.deepseek.com/v1/
+      api_key: os.environ/DEEPSEEK_API_KEY
+  - model_name: deepseek/deepseek-coder
+    litellm_params:
+      model: deepseek/deepseek-coder
+      api_base: https://api.deepseek.com/v1/
+      api_key: os.environ/DEEPSEEK_API_KEY
+  ###### LOCAL OLLAMA ######
+  - model_name: ollama/qwen3-coder:30b
+    litellm_params:
+      model: ollama/qwen3-coder:30b
+      api_base: os.environ/${OLLAMA_BASE_URL}
+
+  ###### DEVZONE MODELS ######
+
+  #- model_name: local/qwen3-coder_30b
+  #  litellm_params:
+  #    model: qwen3-coder:30b
+  #    api_base: os.environ/${OLLAMA_BASE_URL}
+  #- model_name: local/gpt-oss:20b
+  #  litellm_params:
+  #    model: gpt-oss:20b
+  #    api_base: os.environ/${OLLAMA_BASE_URL}
+  #- model_name: local/qwen3-vl:8b
+  #  litellm_params:
+  #    model: qwen3-vl:8b
+  #    api_base: os.environ/${OLLAMA_BASE_URL}            
+  #- model_name: openrouter/qwen3-coder-plus
+  #  litellm_params:
+  #    model: qwen/qwen3-coder-plus
+  #    api_base: https://api.proxyapi.ru/openrouter/v1/
+  #    api_key: os.environ/PROXY_API_KEY
+  #- model_name: openrouter/qwen3-coder-next
+  #  litellm_params:
+  #    model: qwen/qwen3-coder-next
+  #    api_base: https://api.proxyapi.ru/openrouter/v1/
+  #    api_key: os.environ/PROXY_API_KEY
+
+  #- model_name: local/qwen3_30b
+  #  litellm_params:
+  #    model: qwen3:30b
+  #    api_base: ${OLLAMA_BASE_URL}
+
+general_settings:
+  store_prompts_in_spend_logs: true #save request/response text in logs. Disabled by default
+  maximum_spend_logs_retention_period: "30d"  # Delete logs older than 30 days
+  maximum_spend_logs_retention_interval: "1d"  # How often to run cleanup. Run once per day
+
+litellm_settings:
+  callbacks: ["langfuse_otel"]
+  
